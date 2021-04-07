@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "gnishanth4/productsonkubernetes"
+    registry = "gnishanth444/productsonkubernetes"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
