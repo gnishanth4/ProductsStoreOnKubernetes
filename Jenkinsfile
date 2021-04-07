@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "gnishanth4/ProductsStoreOnKubernetes"
+    registry = "gnishanth4/ProductsStoreOnKubernetes/MvcApp"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git ''
+        git 'https://github.com/gnishanth4/ProductsStoreOnKubernetes.git'
       }
     }
     stage('Building image') {
@@ -19,14 +19,7 @@ pipeline {
       }
     }
 
-    stage('Test Mkdocs' ) {
-                agent {
-                docker { image 'anishnath/mkdocs:$BUILD_NUMBER' }
-            }
-            steps {
-                sh 'mkdocs --version'
-            }
-        }
+   
 
 
     stage('Deploy Image') {
