@@ -1,4 +1,4 @@
-String githubUrl = "https://github.com/gnishanth4/Blogifier.git"
+String githubUrl = "https://github.com/gnishanth4/ProductsStoreOnKubernetes.git"
 
 pipeline {
   agent any
