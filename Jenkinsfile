@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "gnishanth4/productsonkubernetes"
+    registry = "gnishanth4/productsonkubernetes/mvcapp"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
