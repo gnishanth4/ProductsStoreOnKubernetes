@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "gnishanth4/productsonkubernetes/mvcapp"
+    registry = "gnishanth4/productsonkubernetes"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
@@ -13,7 +13,9 @@ pipeline {
     }
     stage('Building image') {
       steps{
+        
         script {
+          dir('mvcapp')
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
