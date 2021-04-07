@@ -1,4 +1,4 @@
-String githubUrl = "https://github.com/gnishanth4/ProductsStoreOnKubernetes.git"
+
 
 pipeline {
   agent any
@@ -7,17 +7,7 @@ pipeline {
       JOB_NAME = '${env.JOB_NAME}'
     }  
   stages {
-    stage('Checkout') {
-        steps {
-        checkout([
-            $class: 'GitSCM', 
-            branches: [[name: 'master']], 
-            doGenerateSubmoduleConfigurations: false, 
-            extensions: [], 
-            submoduleCfg: [], 
-            userRemoteConfigs: [[url: """ "${githubUrl}" """]]])
-     }        
-    } 
+    
     stage('Sonar Analysis') {
         steps {
             powershell( ''' dotnet tool install --global dotnet-sonarscanner
