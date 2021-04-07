@@ -13,9 +13,11 @@ pipeline {
     }
     stage('Building image') {
       steps{
-        dir('mvcapp')
+        
         script {
+          dir('mvcapp') {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          }
         }
       }
     }
