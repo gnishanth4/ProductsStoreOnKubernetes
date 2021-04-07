@@ -11,7 +11,7 @@ pipeline {
     
     stage('Build Docker Image') {
         steps {
-        def app = docker.build("./ProductsStoreOnKubernetes/MvcApp") 
+        docker.build("./ProductsStoreOnKubernetes/MvcApp") 
         }
     } 
   
