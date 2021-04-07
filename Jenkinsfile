@@ -1,21 +1,10 @@
-
-
-pipeline {
-  agent any
-
-  environment { 
-      BUID_ID = '${env.BUILD_ID}'
-      JOB_NAME = '${env.JOB_NAME}'
-    }  
-  stages {
-    
-    stage('Build Docker Image') {
-        steps {
-        docker.build("./ProductsStoreOnKubernetes/MvcApp") 
-        }
-    } 
+node {
+  checkout scm
   
-          
+  stage('Create Docker Image') {
+    dir('ASP-Dot-Net-Pipeline-Docker') {
+      docker.build("ASP-Dot-Net-Pipeline-Docker/MvcApp:${env.BUILD_NUMBER}")
+    }
   }
- }    
-
+  
+} 
