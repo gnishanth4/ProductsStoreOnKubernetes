@@ -2,6 +2,7 @@
 
 pipeline {
   agent any
+  def app
   environment { 
       BUID_ID = '${env.BUILD_ID}'
       JOB_NAME = '${env.JOB_NAME}'
@@ -10,11 +11,7 @@ pipeline {
     
     stage('Build Docker Image') {
         steps {
-             sh '''
-                 cd /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/MvcApp
-                 docker build --user='jenkins' --rm -f "Dockerfile" -t mvc-app:1.0 .   
-                ''' 
-         
+         app = docker.build("ProductsStoreOnKubernetes/MvcApp") 
         }
     } 
   
