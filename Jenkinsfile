@@ -1,10 +1,47 @@
-node {
-  checkout scm
-  
-  stage('Create Docker Image') {
-    dir('ASP-Dot-Net-Pipeline-Docker') {
-      docker.build("ASP-Dot-Net-Pipeline-Docker/MvcApp:${env.BUILD_NUMBER}")
+pipeline {
+  environment {
+    registry = "gnishanth4/ProductsStoreOnKubernetes"
+    registryCredential = 'docker-creds'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git ''
+      }
+    }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+
+    stage('Test Mkdocs' ) {
+                agent {
+                docker { image 'anishnath/mkdocs:$BUILD_NUMBER' }
+            }
+            steps {
+                sh 'mkdocs --version'
+            }
+        }
+
+
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
     }
   }
-  
-} 
+}
