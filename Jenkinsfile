@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "gnishanth4/ProductsStoreOnKubernetes/MvcApp"
+    registry = "/var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/MvcApp/"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
