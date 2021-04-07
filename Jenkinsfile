@@ -8,14 +8,13 @@ pipeline {
     }  
   stages {
     
-    stage('Build Docker Image) {
+    stage('Build Docker Image') {
         steps {
              sh '''
                  cd /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/MvcApp
-                 docker build --rm -f "Dockerfile" -t mvc-app:1.0 .
-                 
+                 docker build --rm -f "Dockerfile" -t mvc-app:1.0 .   
                 ''' 
-           
+         
         }
     } 
   
