@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "/ASP-Dot-Net-Pipeline-Docker/MvcApp"
+    registry = "gnishanth4/ASP-Dot-Net-Pipeline-Docker/MvcApp"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
@@ -18,9 +18,6 @@ pipeline {
         }
       }
     }
-
-   
-
 
     stage('Deploy Image') {
       steps{
