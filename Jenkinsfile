@@ -13,6 +13,8 @@ pipeline {
              sh '''
                  cd /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/MvcApp
                  docker build --rm -f "Dockerfile" -t mvc-app:1.0 .
+                 
+                ''' 
            
         }
     } 
