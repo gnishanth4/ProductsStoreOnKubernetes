@@ -17,13 +17,7 @@ pipeline {
             ''')    
         }
     } 
-    stage('Clean') {
-        steps {
-           shell('msbuild /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/ProductsStoreOnKubernetes.sln /t:Clean')
-        }
-    }
-         
-   
+  
           
   }
  }    
