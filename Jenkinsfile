@@ -10,16 +10,16 @@ pipeline {
     
     stage('Sonar Analysis') {
         steps {
-            powershell( ''' dotnet tool install --global dotnet-sonarscanner
+            shell( ''' dotnet tool install --global dotnet-sonarscanner
             dotnet sonarscanner begin /k:"Aspweb-App"  /d:sonar.login="f92b60580fbcc1c571ccee6f23f0c7866b0a8e20"
-            dotnet build C:/Users/Administrator/Source/Repos/Blogifier/Blogifier.sln 
+            dotnet build /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/ProductsStoreOnKubernetes.sln
             dotnet sonarscanner end /d:sonar.login="f92b60580fbcc1c571ccee6f23f0c7866b0a8e20" 
             ''')    
         }
     } 
     stage('Clean') {
         steps {
-            powershell('msbuild C:/Users/Administrator/Source/Repos/Blogifier/Blogifier.sln /t:Clean')
+           shell('msbuild /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/ProductsStoreOnKubernetes.sln /t:Clean')
         }
     }
          
