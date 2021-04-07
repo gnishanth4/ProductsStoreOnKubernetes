@@ -35,14 +35,13 @@ pipeline {
          
     stage('Build Code') {
       steps {
-        powershell("msbuild  C:/Users/Administrator/Source/Repos/Blogifier/Blogifier.sln /t:Publish /p:Configuration=Debug")        
+         
       }
     }
       stage('Push Artifacts to Hub') {
           
           steps {
-            echo "Airtifact on ${env.BUILD_ID}-${env.JOB_NAME}-ASP.zip"
-            powershell('msbuild C:/Users/Administrator/Source/Repos/Blogifier/Blogifier.sln /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="C:/ProgramFiles/NexusRepo/1.2-${BUILD_ID}-${JOB_NAME}-aspcore.zip"')
+          
           }
       } 
      
