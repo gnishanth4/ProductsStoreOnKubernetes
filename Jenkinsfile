@@ -33,19 +33,8 @@ pipeline {
         }
     }
          
-    stage('Build Code') {
-      steps {
-         
-      }
-    }
-      stage('Push Artifacts to Hub') {
+   
           
-          steps {
-          
-          }
-      } 
-     
-     
   }
  }    
 
