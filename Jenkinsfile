@@ -40,7 +40,7 @@ pipeline {
     
     stage('Deploy to cluster'){
       steps{
-         sh " kubectl apply -f "
+         sh "kubectl apply -f kubernete-deployment.yml"
       }  
     }
   }
