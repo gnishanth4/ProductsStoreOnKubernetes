@@ -40,7 +40,7 @@ pipeline {
     
     stage('Deploy to cluster'){
       steps{
-        sshagent([kubernetes]){
+        sshagent(['kubernetes']){
         script {          
           try {
                sh "kubectl apply -f kubernete-deployment.yml"
