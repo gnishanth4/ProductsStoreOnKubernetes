@@ -46,7 +46,7 @@ pipeline {
           } catch(error){
                sh "kubectl create -f kubernete-deployment.yml"
           }
-        
+        }
       }
     }
   }
