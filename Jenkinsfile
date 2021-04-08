@@ -43,9 +43,9 @@ pipeline {
         sshagent(['kubernetes']){
         script {          
           try {
-               sh "kubectl apply -f kubernete-deployment.yml"
+               sh "ssh ubuntu@15.206.183.99 kubectl apply -f kubernete-deployment.yml"
           } catch(error){
-               sh "kubectl create -f kubernete-deployment.yml"
+               sh "ssh ubuntu@15.206.183.99 kubectl create -f kubernete-deployment.yml"
           }
         }
        }
