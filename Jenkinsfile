@@ -40,15 +40,7 @@ pipeline {
     
     stage('Deploy to cluster'){
       steps{
-        sshagent(['kubernetes']){
-        script {          
-          try {
-               sh "ssh -o StrictHostkeyChecking=no ubuntu@15.206.183.99 kubectl apply -f kubernete-deployment.yml"
-          } catch(error){
-               sh "ssh -o StrictHostkeyChecking=no ubuntu@15.206.183.99 kubectl create -f kubernete-deployment.yml"
-          }
-        }
-       }
+         sh " kubectl apply -f "
       }  
     }
   }
