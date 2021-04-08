@@ -25,7 +25,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+          withDockerRegistry([ credentialsId: "registryCredential",url: ""] ) {
             
             sh 'docker push gnishanth444/productsonkubernetes":$BUILD_NUMBER"'
           }
