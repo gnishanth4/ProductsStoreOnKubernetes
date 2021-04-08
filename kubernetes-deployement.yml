@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mvc
-        image:  houssemdocker/webapp:1.0 # acrforaks2020.azurecr.io/webapp:1.0
+        image:  gnishanth444/productsonkubernetes:53 # acrforaks2020.azurecr.io/webapp:1.0
         ports:
         - containerPort: 80
         resources:
@@ -43,9 +43,10 @@ spec:
     app: mvc
   ports:
   - protocol: TCP
+    nodePort: 30008
     port: 80
     targetPort: 80
-  type: LoadBalancer #ClusterIP #NodePort
+  type:  NodePort
 ---
 # apiVersion: extensions/v1beta1
 # kind: Ingress
@@ -134,22 +135,24 @@ spec:
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: azure-disk
-provisioner: kubernetes.io/azure-disk
+   name: fast
+provisioner: kubernetes.io/aws-ebs
 parameters:
-  storageaccounttype: Standard_LRS
-  kind: Managed
+     type: gp2
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mssql-pvc
-  annotations: 
-    volume.beta.kubernetes.io/storage-class: azure-disk
 spec:
-  storageClassName: default
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi
