@@ -43,9 +43,9 @@ pipeline {
         sshagent(['kubernetes']){
         script {          
           try {
-               sh "ssh ubuntu@15.206.183.99 kubectl apply -f kubernete-deployment.yml"
+               sh "ssh -o StrictHostkeyChecking=no ubuntu@15.206.183.99 kubectl apply -f kubernete-deployment.yml"
           } catch(error){
-               sh "ssh ubuntu@15.206.183.99 kubectl create -f kubernete-deployment.yml"
+               sh "ssh -o StrictHostkeyChecking=no ubuntu@15.206.183.99 kubectl create -f kubernete-deployment.yml"
           }
         }
        }
