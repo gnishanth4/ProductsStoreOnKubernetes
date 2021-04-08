@@ -27,7 +27,7 @@ pipeline {
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             
-            sh 'docker push registry + ":$BUILD_NUMBER"'
+            sh 'docker push gnishanth444/productsonkubernetes":$BUILD_NUMBER"'
           }
         }
       }
