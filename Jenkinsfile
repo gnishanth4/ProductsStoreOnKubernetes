@@ -25,8 +25,9 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( 'https://index.docker.io/v1', registryCredential ) {
-            dockerImage.push()
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            
+            sh 'docker push registry + ":$BUILD_NUMBER"'
           }
         }
       }
