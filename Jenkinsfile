@@ -40,8 +40,12 @@ pipeline {
     
     stage('Deploy to cluster'){
       steps{
-        
-        sh "kubectl apply -f /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/kubernete-deployment.yml"
+        script {
+          try {
+               sh "kubectl apply -f kubernete-deployment.yml"
+          } catch(error){
+               sh "kubectl create -f kubernete-deployment.yml"
+          }
         
       }
     }
