@@ -22,7 +22,7 @@ pipeline {
       }
     }
 
-    stage('Deploy Image') {
+    stage('Deploy Image to Hub') {
       steps{
         script {
           withDockerRegistry([ credentialsId: registryCredential,url: ""] ) {
@@ -35,6 +35,14 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+    
+    stage('Deploy to cluster'){
+      steps{
+        
+        sh "kubectl apply -f /var/lib/jenkins/workspace/ASP-Dot-Net-Pipeline-Docker/kubernete-deployment.yml"
+        
       }
     }
   }
