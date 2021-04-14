@@ -50,10 +50,10 @@ pipeline {
       steps{
         script{
           try{
-           sshCommand remote: remote, command: "kubectl apply -f deployment.yml"
+           sshCommand remote: remote, command: "kubectl apply -f kubernetes-deployment.yaml"
           }
           catch(error){
-            sshCommand remote: remote, command: "kubectl create -f deployment.yml"
+            sshCommand remote: remote, command: "kubectl create -f kubernetes-deployment.yaml"
           }
         }
       }
