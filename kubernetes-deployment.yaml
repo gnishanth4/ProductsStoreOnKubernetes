@@ -76,6 +76,31 @@ data:
   # db-connection-string: Server=tcp:mssql-paas.database.windows.net,1433;Initial Catalog=ProductsDB;Persist Security Info=False;User ID=houssem;Password=@Aa123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
   db-connection-string: Server=mssql-service;Database=ProdcutsDB;User ID=SA;Password=@Aa123456;
 ---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+   name: fast
+provisioner: kubernetes.io/aws-ebs
+parameters:
+     type: gp2
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mssql-pvc
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi  
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -131,28 +156,4 @@ spec:
       targetPort: 1433
       nodePort: 30200
   type: NodePort
----
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-   name: fast
-provisioner: kubernetes.io/aws-ebs
-parameters:
-     type: gp2
-reclaimPolicy: Retain
-allowVolumeExpansion: true
-mountOptions:
-  - debug
-volumeBindingMode: Immediate
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mssql-pvc
-spec:
-  storageClassName: standard
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 3Gi
+
