@@ -46,5 +46,17 @@ pipeline {
 
       }  
     }
+    stage('Deploy ASP_Dot_App') {
+      steps{
+        script{
+          try{
+           sshCommand remote: remote, command: "kubectl apply -f deployment.yml"
+          }
+          catch(error){
+            sshCommand remote: remote, command: "kubectl create -f deployment.yml"
+          }
+        }
+      }
+     }
   }
 }
