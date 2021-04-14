@@ -37,14 +37,14 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-    
-    stage('SSH Into k8s Server'){
         def remote = [:]
         remote.name = 'K8S master'
         remote.host = '172.31.35.53'
         remote.user = 'ubuntu'
         remote.password = 'apple@2021'
         remote.allowAnyHosts = true
+    stage('SSH Into k8s Server'){
+
       steps{
 
       }  
