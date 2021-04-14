@@ -1,3 +1,4 @@
+def remote = [name: 'k8 master', host: '172.31.35.53', user: 'ubuntu', password: 'apple@2021', allowAnyHosts: true]
 pipeline {
   environment {
     registry = "gnishanth444/productsonkubernetes"
@@ -43,9 +44,10 @@ pipeline {
         remote.user = 'ubuntu'
         remote.password = 'apple@2021'
         remote.allowAnyHosts = true
-    stage('SSH Into k8s Server'){
+    stage('Put deployment.yml onto k8smaster'){
 
       steps{
+         sshCommand remote: remote, from: 'kubernetes-deployment.yml', into: '.'
 
       }  
     }
