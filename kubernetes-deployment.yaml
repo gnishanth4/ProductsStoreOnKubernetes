@@ -81,7 +81,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: mssql-pvc
 spec:
-  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
