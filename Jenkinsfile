@@ -58,5 +58,10 @@ pipeline {
         }
       }
      }
+    stage('Run Kubectl Command'){
+      steps{
+         sshCommand remote: remote, command: "kubectl get pods"
+      }
+    }
   }
 }
