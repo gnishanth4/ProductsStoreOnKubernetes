@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mvc
-        image:  gnishanth444/productsonkubernetes:53 # acrforaks2020.azurecr.io/webapp:1.0
+        image:  gnishanth444/productsonkubernetes:78 # acrforaks2020.azurecr.io/webapp:1.0
         ports:
         - containerPort: 80
         resources:
