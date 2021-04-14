@@ -42,7 +42,7 @@ pipeline {
     stage('Put deployment.yml onto k8smaster'){
 
       steps{
-         sshCommand remote: remote, from: 'kubernetes-deployment.yml', into: '.'
+         sshCommand remote: remote, from: 'kubernetes-deployment.yml', sudo: '.'
 
       }  
     }
