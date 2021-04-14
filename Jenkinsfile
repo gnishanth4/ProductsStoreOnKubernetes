@@ -38,12 +38,7 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-        def remote = [:]
-        remote.name = 'K8S master'
-        remote.host = '172.31.35.53'
-        remote.user = 'ubuntu'
-        remote.password = 'apple@2021'
-        remote.allowAnyHosts = true
+
     stage('Put deployment.yml onto k8smaster'){
 
       steps{
