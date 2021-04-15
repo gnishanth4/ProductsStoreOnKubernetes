@@ -1,4 +1,4 @@
-def remote = [name: 'k8 master', host: '172.31.13.36', user: 'root', password: 'apple@2021', allowAnyHosts: true]
+def remote = [name: 'k8 master', host: '172.31.13.36', user: 'ubuntu', password: 'apple@2021', allowAnyHosts: true]
 pipeline {
   environment {
     registry = "gnishanth444/productsonkubernetes"
@@ -52,11 +52,11 @@ pipeline {
         script{
           try{
            
-           sshCommand remote: remote, command: "kubectl apply -f kubernetes-deployment.yaml"
+           sshCommand remote: remote, command: "sudo kubectl apply -f kubernetes-deployment.yaml"
           }
           catch(error){
            
-            sshCommand remote: remote, command: "kubectl create -f kubernetes-deployment.yaml"
+            sshCommand remote: remote, command: "sudo kubectl create -f kubernetes-deployment.yaml"
           }
         }
       }
@@ -64,7 +64,7 @@ pipeline {
     stage('Run Kubectl Command'){
       steps{
          
-         sshCommand remote: remote, command: "kubectl get pods"
+         sshCommand remote: remote, command: "sudo kubectl get pods"
       }
     }
   }
