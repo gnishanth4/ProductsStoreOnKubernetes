@@ -1,4 +1,4 @@
-def remote = [name: 'k8 master', host: '172.31.13.36', user: 'ubuntu', password: 'apple@2021', allowAnyHosts: true]
+def remote = [name: 'k8 master', host: '172.31.13.36', user: 'root', password: 'apple@2021', allowAnyHosts: true]
 pipeline {
   environment {
     registry = "gnishanth444/productsonkubernetes"
