@@ -42,7 +42,7 @@ pipeline {
     stage('Put deployment.yml onto k8smaster'){
 
       steps{
-         sshPut remote: remote, from: 'kubernetes-deployment.yaml', into: '.'
+         sshPut remote: remote, from: 'kubernetes-deployment.yaml', into: '/root'
 
       }  
     }
@@ -50,9 +50,11 @@ pipeline {
       steps{
         script{
           try{
+           sshCommand remote: remote, command: "sudo su"
            sshCommand remote: remote, command: "kubectl apply -f kubernetes-deployment.yaml"
           }
           catch(error){
+            sshCommand remote: remote, command: "sudo su"
             sshCommand remote: remote, command: "kubectl create -f kubernetes-deployment.yaml"
           }
         }
@@ -60,6 +62,7 @@ pipeline {
      }
     stage('Run Kubectl Command'){
       steps{
+         sshCommand remote: remote, command: "sudo su"
          sshCommand remote: remote, command: "kubectl get pods"
       }
     }
